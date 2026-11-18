@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('aktivitas');
             $table->dateTime('waktu_aktivitas');
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 
