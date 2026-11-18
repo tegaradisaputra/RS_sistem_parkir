@@ -20,7 +20,7 @@ return new class extends Migration
                 ->cascadeOnUpdate();
 
             $table->dateTime('waktu_masuk');
-            $table->dateTime('waktu_keluar');
+            $table->dateTime('waktu_keluar')->nullable();
 
             $table->foreignId('tarif_id')
                 ->constrained('tarifs')
