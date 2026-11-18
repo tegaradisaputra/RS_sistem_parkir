@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
 
             $table->foreignId('kendaraan_id')
-                ->constrained('kendaraan')
+                ->constrained('kendaraans')
                 ->restrictOnDelete()
                 ->cascadeOnUpdate();
 
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->dateTime('waktu_keluar');
 
             $table->foreignId('tarif_id')
-                ->constrained('tarif')
+                ->constrained('tarifs')
                 ->restrictOnDelete()
                 ->cascadeOnUpdate();
 
@@ -36,7 +36,7 @@ return new class extends Migration
                 ->restrictOnDelete()
                 ->cascadeOnDelete();
             $table->foreignId('area_parkir_id')
-                ->constrained('area_parkir')
+                ->constrained('area_parkirs')
                 ->restrictOnDelete()
                 ->cascadeOnUpdate();
             $table->timestamps();

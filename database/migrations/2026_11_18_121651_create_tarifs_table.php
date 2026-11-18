@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
 
             $table->foreignId('jenis_kendaraan_id')
-            ->constrained('jenis_kendaraan')
+            ->constrained('jenis_kendaraans')
             ->restrictOnDelete()
             ->cascadeOnUpdate();
 

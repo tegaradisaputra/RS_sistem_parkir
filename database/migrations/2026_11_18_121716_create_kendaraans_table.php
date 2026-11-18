@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('plat_nomor')->unique(); // menghindari duplikat
 
             $table->foreignId('jenis_kendaraan_id')
-                ->constrained('jenis_kendaraan')
+                ->constrained('jenis_kendaraans')
                 ->restrictOnDelete()
                 ->cascadeOnUpdate();
 
