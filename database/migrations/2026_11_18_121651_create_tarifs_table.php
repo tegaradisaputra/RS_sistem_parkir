@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
 
             $table->foreignId('jenis_kendaraan_id')
+                ->unique()
                 ->constrained('jenis_kendaraans')
                 ->restrictOnDelete();
 

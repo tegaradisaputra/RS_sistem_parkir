@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class JenisKendaraan extends Model
@@ -22,8 +23,8 @@ class JenisKendaraan extends Model
         return $this->hasMany(Kendaraan::class);
     }
 
-    public function tarif(): HasMany
+    public function tarif(): HasOne
     {
-        return $this->hasMany(Tarif::class);
+        return $this->hasOne(Tarif::class);
     }
 }

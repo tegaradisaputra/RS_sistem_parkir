@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('area_parkirs', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_area');
+            $table->string('nama_area')->unique();
             $table->unsignedInteger('kapasitas');
             $table->timestamps();
 

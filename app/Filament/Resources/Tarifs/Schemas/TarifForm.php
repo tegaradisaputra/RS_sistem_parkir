@@ -14,6 +14,7 @@ class TarifForm
             ->components([
                 Select::make('jenis_kendaraan_id')
                     ->relationship('jenisKendaraan', 'nama_jenis')
+                    ->unique(ignoreRecord: true)
                     ->required(),
                 TextInput::make('tarif_per_jam')
                     ->required()
