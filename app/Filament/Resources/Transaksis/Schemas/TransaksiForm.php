@@ -13,12 +13,10 @@ class TransaksiForm
             ->components([
                 Select::make('kendaraan_id')
                     ->relationship('kendaraan', 'plat_nomor')
-                    ->searchable()
                     ->required(),
 
                 Select::make('area_parkir_id')
                     ->relationship('areaParkir', 'nama_area')
-                    ->searchable()
                     ->required(),
             ]);
     }
