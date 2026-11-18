@@ -7,25 +7,22 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Override;
 
 class Tarif extends Model
 {
-    //
     use HasFactory, SoftDeletes;
 
-    protected $table = 'tarif';
+    protected $table = 'tarifs';
 
     protected $fillable = [
         'jenis_kendaraan_id',
-        'tarif_per_jam'
+        'tarif_per_jam',
     ];
 
-    #[Override]
-    protected function casts()
+    protected function casts(): array
     {
         return [
-            'tarif_per_jam' => 'decimal:2'
+            'tarif_per_jam' => 'decimal:2',
         ];
     }
 
@@ -34,7 +31,7 @@ class Tarif extends Model
         return $this->hasMany(Transaksi::class);
     }
 
-    public function jenis_kendaraan(): BelongsTo
+    public function jenisKendaraan(): BelongsTo
     {
         return $this->belongsTo(JenisKendaraan::class);
     }

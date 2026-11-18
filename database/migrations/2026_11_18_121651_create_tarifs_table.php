@@ -15,11 +15,10 @@ return new class extends Migration
             $table->id();
 
             $table->foreignId('jenis_kendaraan_id')
-            ->constrained('jenis_kendaraans')
-            ->restrictOnDelete()
-            ->cascadeOnUpdate();
+                ->constrained('jenis_kendaraans')
+                ->restrictOnDelete();
 
-            $table->decimal('tarif_per_jam', 10, 2);
+            $table->decimal('tarif_per_jam', 10, 2)->unsigned();
             $table->timestamps();
 
             $table->softDeletes();

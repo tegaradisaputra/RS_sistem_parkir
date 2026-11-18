@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('area_parkirs', function (Blueprint $table) {
             $table->id();
             $table->string('nama_area');
-            $table->integer('kapasitas');
-            $table->unsignedInteger('terisi')->default(0);
+            $table->unsignedInteger('kapasitas');
             $table->timestamps();
 
             $table->softDeletes();

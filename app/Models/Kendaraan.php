@@ -10,10 +10,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Kendaraan extends Model
 {
-    //
     use HasFactory, SoftDeletes;
 
-    protected $table = 'kendaraan';
+    protected $table = 'kendaraans';
 
     protected $fillable = [
         'plat_nomor',
@@ -23,7 +22,7 @@ class Kendaraan extends Model
         'warna',
     ];
 
-    public function JenisKendaraan(): BelongsTo
+    public function jenisKendaraan(): BelongsTo
     {
         return $this->belongsTo(JenisKendaraan::class);
     }

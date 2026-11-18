@@ -9,13 +9,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class JenisKendaraan extends Model
 {
-    //
     use HasFactory, SoftDeletes;
 
-    protected $table = 'jenis_kendaran';
+    protected $table = 'jenis_kendaraans';
 
     protected $fillable = [
-        'nama_jenis'
+        'nama_jenis',
     ];
 
     public function kendaraan(): HasMany

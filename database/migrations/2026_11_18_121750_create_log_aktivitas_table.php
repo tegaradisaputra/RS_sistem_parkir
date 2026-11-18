@@ -15,15 +15,13 @@ return new class extends Migration
             $table->id();
 
             $table->foreignId('user_id')
-            ->constrained('users')
-            ->restrictOnDelete()
-            ->cascadeOnUpdate();
+                ->constrained('users')
+                ->restrictOnDelete();
 
             $table->string('aktivitas');
             $table->dateTime('waktu_aktivitas');
             $table->timestamps();
 
-            $table->softDeletes();
         });
     }
 

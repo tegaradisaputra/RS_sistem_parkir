@@ -17,8 +17,7 @@ return new class extends Migration
 
             $table->foreignId('jenis_kendaraan_id')
                 ->constrained('jenis_kendaraans')
-                ->restrictOnDelete()
-                ->cascadeOnUpdate();
+                ->restrictOnDelete();
 
             $table->string('merk');
             $table->string('tipe');

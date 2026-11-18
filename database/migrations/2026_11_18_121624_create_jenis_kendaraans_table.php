@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('jenis_kendaraans', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_jenmigaris')->unique(); // motor, mobil => supaya tidak duplkat
+            $table->string('nama_jenis')->unique();
             $table->timestamps();
 
             $table->softDeletes();

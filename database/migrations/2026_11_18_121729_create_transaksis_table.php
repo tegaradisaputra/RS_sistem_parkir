@@ -16,29 +16,26 @@ return new class extends Migration
 
             $table->foreignId('kendaraan_id')
                 ->constrained('kendaraans')
-                ->restrictOnDelete()
-                ->cascadeOnUpdate();
+                ->restrictOnDelete();
 
             $table->dateTime('waktu_masuk');
             $table->dateTime('waktu_keluar')->nullable();
 
             $table->foreignId('tarif_id')
                 ->constrained('tarifs')
-                ->restrictOnDelete()
-                ->cascadeOnUpdate();
+                ->restrictOnDelete();
 
-            $table->integer('durasi_jam');
-            $table->decimal('biaya_total', 10, 2);
-            $table->enum('status', ['waktu_masuk', 'waktu_keluar']);
+            $table->unsignedInteger('durasi_jam')->nullable();
+            $table->decimal('biaya_total', 10, 2)->nullable();
+            $table->decimal('tarif_per_jam', 10, 2)->unsigned();
+            $table->string('status')->default('aktif');
 
             $table->foreignId('user_id')
                 ->constrained('users')
-                ->restrictOnDelete()
-                ->cascadeOnDelete();
+                ->restrictOnDelete();
             $table->foreignId('area_parkir_id')
                 ->constrained('area_parkirs')
-                ->restrictOnDelete()
-                ->cascadeOnUpdate();
+                ->restrictOnDelete();
             $table->timestamps();
 
             $table->softDeletes();

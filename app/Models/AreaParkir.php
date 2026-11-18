@@ -6,23 +6,27 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Override;
 
 class AreaParkir extends Model
 {
-    //
     use HasFactory, SoftDeletes;
 
-    protected $table = 'area_parkir';
+    protected $table = 'area_parkirs';
 
     protected $fillable = [
         'nama_area',
         'kapasitas',
-        'terisi'
     ];
 
     public function transaksi(): HasMany
     {
         return $this->hasMany(Transaksi::class);
+    }
+
+    protected function casts(): array
+    {
+        return [
+            'kapasitas' => 'integer',
+        ];
     }
 }

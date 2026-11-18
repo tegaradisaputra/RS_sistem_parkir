@@ -5,13 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Override;
 
 class LogAktivitas extends Model
 {
-    //
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     protected $table = 'log_aktivitas';
 
@@ -21,11 +18,10 @@ class LogAktivitas extends Model
         'waktu_aktivitas',
     ];
 
-    #[Override]
-    protected function casts()
+    protected function casts(): array
     {
         return [
-            'waktu_aktivitas' => 'datetime'
+            'waktu_aktivitas' => 'datetime',
         ];
     }
 
