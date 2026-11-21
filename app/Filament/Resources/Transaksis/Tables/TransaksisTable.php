@@ -2,6 +2,9 @@
 
 namespace App\Filament\Resources\Transaksis\Tables;
 
+use App\Models\Transaksi;
+use Filament\Actions\Action;
+use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
@@ -25,6 +28,8 @@ class TransaksisTable
                     ->dateTime()
                     ->placeholder('Belum keluar'),
 
+                TextColumn::make('durasi_jam'),
+
                 TextColumn::make('status')
                     ->badge(),
 
@@ -34,6 +39,27 @@ class TransaksisTable
             ])
             ->filters([
                 TrashedFilter::make(),
-            ]);
+            ])
+            ->recordActions([
+                EditAction::make(),
+                Action::make('checkout')
+                    ->label('Check-out')
+                    ->requiresConfirmation()
+                    ->visible(fn (Transaksi $record): bool => $record->status === 'aktif')
+                    ->action(function (Transaksi $record): void {
+                        $waktuKeluar = now();
+                        $durasiJam = max(
+                            1,
+                            (int) ceil($record->waktu_masuk->diffInSeconds($waktuKeluar) / 3600),
+                        );
+
+                        $record->update([
+                            'waktu_keluar' => $waktuKeluar,
+                            'durasi_jam' => $durasiJam,
+                            'biaya_total' => $durasiJam * (float) $record->tarif_per_jam,
+                            'status' => 'selesai'
+                        ]);
+                    })
+            ]);;
     }
 }
