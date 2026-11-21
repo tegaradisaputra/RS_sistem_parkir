@@ -59,7 +59,14 @@ class TransaksisTable
                             'biaya_total' => $durasiJam * (float) $record->tarif_per_jam,
                             'status' => 'selesai'
                         ]);
-                    })
-            ]);;
+                    }),
+                Action::make('cetakStruk')
+                    ->label('Cetak Struk')
+                    ->url(fn(Transaksi $record): string => route(
+                        'transaksi.struk',
+                        ['transaksi' => $record]
+                    ))
+                    ->openUrlInNewTab(),
+            ]);
     }
 }
