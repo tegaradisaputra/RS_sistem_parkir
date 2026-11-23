@@ -29,6 +29,11 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function isOwner(): bool
+    {
+        return $this->role === 'owner';
+    }
+
     /**
      * Get the attributes that should be cast.
      *
