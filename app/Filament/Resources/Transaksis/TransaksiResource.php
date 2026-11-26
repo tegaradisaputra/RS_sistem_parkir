@@ -14,11 +14,33 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Override;
 
 class TransaksiResource extends Resource
 {
     protected static ?string $model = Transaksi::class;
+
+    #[Override]
+    public static function canAccess(): bool
+    {
+        $user = auth()->user();
+
+        return $user !== null && ($user->isPetugas() || $user->isOwner());
+    }
+
+    #[Override]
+    public static function canCreate(): bool
+    {
+        return auth()->user()?->isPetugas() ?? false;
+    }
+
+    #[Override]
+    public static function canEdit(Model $record): bool
+    {
+        return auth()->user()?->isPetugas() ?? false;
+    }
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 

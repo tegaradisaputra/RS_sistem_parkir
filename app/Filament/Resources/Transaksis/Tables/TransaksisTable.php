@@ -75,7 +75,9 @@ class TransaksisTable
                 Action::make('checkout')
                     ->label('Check-out')
                     ->requiresConfirmation()
-                    ->visible(fn (Transaksi $record): bool => $record->status === 'aktif')
+                    ->authorize(fn (): bool => auth()->user()?->isPetugas() ?? false)
+                    ->visible(fn (Transaksi $record): bool => (auth()->user()?->isPetugas() ?? false) && $record->status === 'aktif'
+                    )
                     ->action(function (Transaksi $record): void {
                         $waktuKeluar = now();
                         $durasiJam = max(
@@ -92,6 +94,8 @@ class TransaksisTable
                     }),
                 Action::make('cetakStruk')
                     ->label('Cetak Struk')
+                    ->authorize(fn (): bool => auth()->user()?->isPetugas() ?? false)
+                    ->visible(fn (): bool => auth()->user()?->isPetugas() ?? false)
                     ->url(fn (Transaksi $record): string => route(
                         'transaksi.struk',
                         ['transaksi' => $record]

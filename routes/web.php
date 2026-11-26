@@ -7,7 +7,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/transaksi/{transaksi}/struk', function (Transaksi $transaksi) {
+    abort_unless(auth()->user()?->isPetugas() ?? false, 403);
 
-Route::get('/transaksi/{transaksi}/struk', function(Transaksi $transaksi) {
     return view('transaksi.struk', compact('transaksi'));
 })->name('transaksi.struk');
